@@ -26,8 +26,30 @@ conexao.connect(function(erro){
     console.log('Conexao com o banco de dados estabelecida com sucesso!');
 });
 
-app.get("/", function(req, res){
-    res.render('teste');
+app.get("/index", function(req, res){
+    let sql='SELECT * FROM produtos';
+    conexao.query(sql,function(erro,produtos_qs){
+    if (erro){
+        console.error('Erro ao consultar produtos:',erro);
+        res.status(500).send('Erro ao consultar produtos');
+        return;
+    }    
+
+    res.render('index',{produtos: produtos_qs});
+});
+});
+
+app.get("/clientes", function(req, res){
+    let sql='SELECT * FROM clientes';
+    conexao.query(sql,function(erro,clientes_qs){
+    if (erro){
+        console.error('Erro ao consultar clientes:',erro);
+        res.status(500).send('Erro ao consultar clientes');
+        return;
+    }    
+
+    res.render('clientes',{clientes: clientes_qs});
+});
 });
 
 app.listen(8080);

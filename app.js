@@ -1,6 +1,14 @@
 const express = require('express');
 const app = express();
+const {engine}=require('express-handlebars');
+
 const mysql = require('mysql2');
+
+app.use('/bootstrap', express.static(__dirname+'/node_modules/bootstrap/dist'));
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 const conexao = mysql.createConnection({
     host: 'localhost',
@@ -19,8 +27,7 @@ conexao.connect(function(erro){
 });
 
 app.get("/", function(req, res){
-    res.write("Hello Worldddddddddddd");
-    res.end();
+    res.render('teste');
 });
 
 app.listen(8080);

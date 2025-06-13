@@ -1,14 +1,23 @@
 <h1>Adicionar Produto</h1>
-<form action="/submit" method="post">
+<form>
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required>
+    <input type="text" class="form-control" id="nome" name="nome" required>
     <label for="descricao">Descrição:</label>
-    <input type="textarea" id="descricao" name="descricao">
+    <input type="textarea" class="form-control" id="descricao" name="descricao">
     <label for="preco">Preço:</label>
-    <input type="text" id="preco" name="preco" required>
+    <input type="number" class="form-control" id="preco" name="preco" required>
     <label for="estoque">Estoque:</label>
-    <input type="text" id="estoque" name="estoque">
+    <input type="number" class="form-control" id="estoque" name="estoque">
     <label for="categoria">Categoria:</label>
-    <input type="text" id="categoria" name="categoria">
-    <input type="button" value="Salvar Produto">
+    <select id="categoria" class="form-select">
+    {{#if categoria.length}}
+        {{#each categoria}}
+            <option class="form-control">{{this.nome}}</option>
+        {{/each}}
+    {{else}}
+        <option class="form-control">Sem Categorias</option>
+    {{/if}}
+    </select>
+
+    <button class="btn btn-primary" type="submit">Salvar Produto</button> 
 </form>

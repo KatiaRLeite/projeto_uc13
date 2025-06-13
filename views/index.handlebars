@@ -1,12 +1,14 @@
 <h1 class>Produtos</h1>
 {{#if produtos.length}}
+    <table class="table">
     {{#each produtos}}
-        <div >
-            <h2>{{this.nome}}</h2>
-            <p>Preço: R$ {{this.preco}}</p>
-            <p>Descrição: {{this.descricao}}</p>
-        </div>
+        <tr>
+            <td>{{this.nome}}</td>
+            <td>Preço: R$ {{this.preco}}</td>
+            <td>Descrição: {{this.descricao}}</td>
+        </tr>
     {{/each}}
+    </table>
 {{else}}
     <p>Sem produtos disponíveis no momento.</p>
 {{/if}}
